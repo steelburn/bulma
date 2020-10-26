@@ -1,47 +1,65 @@
 #!/bin/bash
 
+# CONSTANTS
 
+TEST_DIR=$(dirname $BASH_SOURCE)
+FILES=$TEST_DIR/sass/*
+CSS_DIR=$TEST_DIR/css
+CSS_FILES=$TEST_DIR/css/*.css
+SASS_OPTIONS=--sourcemap=none
 
-# ==============================================================================
-# FUNCTIONS - START
-# ==============================================================================
+# FUNCTIONS
 
-run_it()
+build_sass()
 {
-	
-	local _src="${1-bulma.sass}"
-	local _dest="${2-$(dirname "${BASH_SOURCE[0]}")/output/$(basename ${_src}).css}"
-	local _options="${3---sourcemap=none}"
+	  echo "Processing $1 file…"
 
-	# ----------------------------------------------------------------------------
-	
-	local _dest_dir="$(dirname "${_dest}")"
-	
-	if [ ! -d "${_dest_dir}" ]; then
-	
-		mkdir -p "${_dest_dir}"
-	
+	  local fileName=$(basename -- "$1")
+	  local name="${fileName%.*}"
+		local destFile="$CSS_DIR/$name.css"
+
+		sass "$1" "${destFile}"
+}
+
+build_all_css_files()
+{
+	rm -r $CSS_DIR
+
+	if [ ! -d "${CSS_DIR}" ]; then
+	  echo "Creating $CSS_DIR directory…"
+		mkdir -p "${CSS_DIR}"
 	fi
 
-	# ----------------------------------------------------------------------------
-	
-	sass "${_src}" "${_dest}" ${_options}
-	
+	if [ $1 ]
+	then
+		build_sass $1
+	else
+		for f in $FILES
+		do
+			build_sass $f
+		done
+	fi
 }
-# run_it()
 
-# ==============================================================================
-# FUNCTIONS - END
-# ==============================================================================
+check_keywords_inclusion()
+{
+	for f in $CSS_FILES
+	do
+		BASE=$(basename $f)
+		KEYWORDS_FILE=$TEST_DIR/keywords/$BASE.txt
+		while read p; do
+			if ! grep -q "$p" "$f"
+			then
+			#   echo "Ok"
+			# else
+			  echo "$p not found in $f"
+			fi
+	    # echo "Checking for $p "
+		done < $KEYWORDS_FILE
+	done
+}
 
+# EXECUTION
 
-
-# ==============================================================================
-# EXECUTION - START
-# ==============================================================================
-
-run_it $@
-
-# ==============================================================================
-# EXECUTION - END
-# ==============================================================================
+build_all_css_files $@
+check_keywords_inclusion $@

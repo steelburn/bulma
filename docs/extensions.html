@@ -1,8 +1,18 @@
 ---
 title: Extensions
-layout: default
+layout: more
 route: extensions
+route: backers
+breadcrumb:
+- home
+- more
+- extensions
 extensions:
+- name: bulma-o-steps
+  url: https://octoshrimpy.github.io/bulma-o-steps/
+  slug: bulma-o-steps
+  width: 401
+  height: 352
 - name: bulma-accordion
   url: https://wikiki.github.io/components/accordion
   slug: bulma-accordion
@@ -28,6 +38,11 @@ extensions:
   slug: bulma-tagsinput
   width: 423
   height: 50
+- name: bulma-tagsfield
+  url: https://github.com/vyachkonovalov/bulma-tagsfield
+  slug: bulma-tagsfield
+  width: 471
+  height: 70
 - name: bulma-pricingtable
   url: https://wikiki.github.io/components/pricingtable
   slug: bulma-pricingtable
@@ -49,7 +64,7 @@ extensions:
   width: 647
   height: 166
 - name: bulma.io-axure
-  url: https://github.com/Code-Mine-Development/Bulma.io-axure
+  url: https://github.com/AGmakonts/Bulma.io-axure
   slug: bulma.io-axure
   width: 888
   height: 541
@@ -84,7 +99,7 @@ extensions:
   width: 245
   height: 139
 - name: bulma-ribbon
-  url: https://wikiki.github.io/elements/ribbon
+  url: https://github.com/Wikiki/bulma-ribbon
   slug: bulma-ribbon
   width: 323
   height: 87
@@ -108,67 +123,55 @@ extensions:
   slug: bulma-timeline
   width: 634
   height: 469
+- name: bulma-toast
+  url: https://rfoel.github.io/bulma-toast/
+  slug: bulma-toast
+  width: 208
+  height: 173
+- name: bulma-dashboard
+  url: https://github.com/lucperkins/bulma-dashboard
+  slug: bulma-dashboard
+- name: bulma-block-list
+  url: https://github.com/chrisrhymes/bulma-block-list
+  slug: bulma-block-list
+- name: bulma-spacing
+  url: https://github.com/kaangokdemir/bulma-spacing
+  slug: bulma-spacing
 ---
 
-{% include navbar.html id="Extensions" %}
+{% for extension in page.extensions %}
+  <a class="box" href="{{ extension.url }}">
+    <div class="columns">
+      <div class="column is-one-third">
+        <h3 class="title is-4">
+          <strong>{{ extension.name }}</strong>
+        </h3>
+        <h4 class="subtitle is-6">
+          {{ extension.url | remove:'http://' | remove:'https://' | remove:'www.' }}
+        </h4>
+      </div>
+      <div class="column">
+        <img src="{{site.url}}/images/extensions/{{ extension.slug }}.png" width="{{ extension.width }}" height="{{ extension.height }}">
+      </div>
+    </div>
+  </a>
+{% endfor %}
 
-<section class="hero is-danger">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-vcentered">
-        <div class="column">
-          <h1 class="title">
-            <a href="{{ site.url }}/blog">Extensions</a>
-          </h1>
-          <p class="subtitle">
-            Side projects to enhance Bulma
-          </p>
+<div class="message">
+  <div class="message-body">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <p>Have an extension to share with the community?</p>
         </div>
-        <div class="column is-narrow">
-          {% include carbon.html %}
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <a class="button is-primary" href="https://github.com/jgthms/bulma/pulls">
+            Submit a Pull Request
+          </a>
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    {% for extension in page.extensions %}
-      <a class="box" href="{{ extension.url }}">
-        <div class="columns">
-          <div class="column is-one-third">
-            <h3 class="title is-4">
-              <strong>{{ extension.name }}</strong>
-            </h3>
-            <h4 class="subtitle is-6">
-              {{ extension.url | remove:'http://' | remove:'https://' | remove:'www.' }}
-            </h4>
-          </div>
-          <div class="column">
-            <img src="{{site.url}}/images/extensions/{{ extension.slug }}.png" width="{{ extension.width }}" height="{{ extension.height }}">
-          </div>
-        </div>
-      </a>
-    {% endfor %}
-
-    <div class="message">
-      <div class="message-body">
-        <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <p>Have an extension to share with the community?</p>
-            </div>
-          </div>
-          <div class="level-right">
-            <div class="level-item">
-              <a class="button is-primary" href="https://github.com/jgthms/bulma/pulls">
-                Submit a Pull Request
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>

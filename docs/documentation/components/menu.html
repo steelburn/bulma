@@ -3,6 +3,15 @@ title: Menu
 layout: documentation
 doc-tab: components
 doc-subtab: menu
+breadcrumb:
+- home
+- documentation
+- components
+- components-menu
+meta:
+  colors: false
+  sizes: false
+  variables: true
 ---
 
 {% capture menu_example %}
@@ -42,24 +51,23 @@ doc-subtab: menu
 </aside>
 {% endcapture %}
 
-{% include subnav/subnav-components.html %}
+<div class="content">
+  <p>
+    The Bulma <code>menu</code> is a vertical navigation component that comprises:
+  </p>
+  <ul>
+    <li>
+      the <code>menu</code> container
+    </li>
+    <li>
+      informative <code>menu-label</code> labels
+    </li>
+    <li>
+      interactive <code>menu-list</code> lists that can be nested up to 2 levels
+    </li>
+  </ul>
+</div>
 
-<section class="section">
-  <div class="container">
-    <h1 class="title">Menu</h1>
-    <h2 class="subtitle">A simple <strong>menu</strong>, for any type of vertical navigation</h2>
-    {%
-      include meta.html
-      colors=false
-      sizes=false
-      variables=true
-    %}
+{% include elements/snippet.html content=menu_example size="one-third" %}
 
-    <hr>
-
-    {% include snippet.html content=menu_example size="one-third" %}
-
-    {% include variables.html type='component' %}
-
-  </div>
-</section>
+{% include elements/variables.html type='component' %}

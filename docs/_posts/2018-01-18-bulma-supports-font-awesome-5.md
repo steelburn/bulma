@@ -4,11 +4,11 @@ layout: post
 introduction: "No change required!"
 color: "info"
 name: "Font Awesome 5"
-icon: "font-awesome-alt"
+icon: "font-awesome"
 icon_brand: true
 ---
 
-Bulma is **icon library agnostic**: this means that you can use _any_ icon font library (like Font Awesome 4 or 5, Material Design Icons, Open Iconic, Ionicons…) with Bulma's `icon` class.
+Bulma is **icon library agnostic**: this means that you can use _any_ icon font library (like Font Awesome 4 or 5, Material Design Icons, Ionicons…) with Bulma's `icon` class.
 
 As a result, **Bulma already supports Font Awesome 5**! 😃
 

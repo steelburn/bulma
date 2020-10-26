@@ -9,8 +9,3 @@ markdown:      kramdown
 permalink:     pretty
 url:           https://bulma.io
 exclude:       ['icons', 'node_modules', 'templates', '.babelrc', 'bulma-docs.sass', 'docker-compose.yml', 'package.json', 'yarn.lock']
-
-# Variables
-
-download:      https://github.com/jgthms/bulma/releases/download/0.6.2/bulma-0.6.2.zip
-version:       0.6.2
